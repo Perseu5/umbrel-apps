@@ -17,10 +17,10 @@ if [[ "${luma_lan_cidr}" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/([0-9]+)$ ]]
   luma_network=$(( luma_address & ((0xFFFFFFFF << (32 - luma_prefix)) & 0xFFFFFFFF) ))
   luma_lan_subnet="$(( (luma_network >> 24) & 255 )).$(( (luma_network >> 16) & 255 )).$(( (luma_network >> 8) & 255 )).$(( luma_network & 255 ))/${luma_prefix}"
 fi
-export APP_LUMA_LAN_PARENT="${luma_lan_parent:-eth0}"
-export APP_LUMA_LAN_GATEWAY="${luma_lan_gateway:-192.0.2.1}"
-export APP_LUMA_LAN_SUBNET="${luma_lan_subnet}"
-export APP_LUMA_HOST_IP="${luma_host_ip}"
+export APP_GH0ST_LUMA_LAN_PARENT="${luma_lan_parent:-eth0}"
+export APP_GH0ST_LUMA_LAN_GATEWAY="${luma_lan_gateway:-192.0.2.1}"
+export APP_GH0ST_LUMA_LAN_SUBNET="${luma_lan_subnet}"
+export APP_GH0ST_LUMA_HOST_IP="${luma_host_ip}"
 
 # Luma's own configuration, written by the setup page with `luma setup
 # production`. It is read line by line, never sourced: values are Compose

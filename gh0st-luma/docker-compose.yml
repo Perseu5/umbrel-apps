@@ -1169,15 +1169,15 @@ services:
     - luma-umbrel
     - portal
     environment:
-      LUMA_UMBREL_APP_ID: luma
+      LUMA_UMBREL_APP_ID: gh0st-luma
       LUMA_UMBREL_DEVICE_DOMAIN: ${DEVICE_DOMAIN_NAME}
-      LUMA_UMBREL_LAN_SUBNET: ${APP_LUMA_LAN_SUBNET}
-      LUMA_UMBREL_HOST_IP: ${APP_LUMA_HOST_IP}
+      LUMA_UMBREL_LAN_SUBNET: ${APP_GH0ST_LUMA_LAN_SUBNET}
+      LUMA_UMBREL_HOST_IP: ${APP_GH0ST_LUMA_HOST_IP}
     volumes:
     - ${APP_DATA_DIR}/data:/data
   app_proxy:
     environment:
-      APP_HOST: luma_portal_1
+      APP_HOST: gh0st-luma_portal_1
       APP_PORT: 8080
 networks:
   cosmos-internal:
@@ -1191,11 +1191,11 @@ networks:
   lan-edge:
     driver: macvlan
     driver_opts:
-      parent: ${APP_LUMA_LAN_PARENT}
+      parent: ${APP_GH0ST_LUMA_LAN_PARENT}
     ipam:
       config:
-      - subnet: ${APP_LUMA_LAN_SUBNET}
-        gateway: ${APP_LUMA_LAN_GATEWAY}
+      - subnet: ${APP_GH0ST_LUMA_LAN_SUBNET}
+        gateway: ${APP_GH0ST_LUMA_LAN_GATEWAY}
         ip_range: ${LUMA_DEVICE_EDGE_IPV4}/32
 secrets:
   attestation_ca_cert:
