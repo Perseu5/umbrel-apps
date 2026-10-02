@@ -1,0 +1,42 @@
+manifestVersion: 1
+id: luma
+category: ai
+name: Luma
+version: "0.3.29"
+tagline: Your Ai Pin. Yours again.
+description: >-
+  Luma recreates the Humane Ai Pin's cloud (Center and Cosmos) on your own
+  server. Open Luma after installing to run its one-time setup.
+
+
+  Before you start: Luma needs a public domain name for Center and its own
+  unused address on your network. Umbrel keeps ports 80 and 443 for itself, so
+  Luma answers on that separate address, and your router forwards ports 443
+  (and 80 for Let's Encrypt) to it. The Pin is pointed at that address.
+
+
+  After setup, restart Luma once from the home screen. Umbrel then downloads
+  and starts the Luma services (about 5 GB, a few minutes).
+
+
+  Luma is an independent community project, not affiliated with or endorsed by
+  Humane or HP. You are responsible for the device, server, accounts,
+  credentials, and third-party services you connect.
+releaseNotes: >-
+  Luma is now open source; installs and nightly updates need no GitHub account.
+  Captures are now kept until you delete them (set COSMOS_CAPTURE_RETENTION_DAYS
+  to expire them automatically). Center now uses the Inter typeface. Fixes to
+  location lookups, spoken confirmations, capture search, Pin feature settings,
+  and sign-in tokens. The Pin software is unchanged (2026-09-30.3).
+developer: Anders Madsen (packaged for Umbrel by gh0st)
+website: https://github.com/TheAndersMadsen/luma
+dependencies: []
+repo: https://github.com/TheAndersMadsen/luma
+support: https://github.com/TheAndersMadsen/luma/issues
+port: 4410
+gallery: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
+submitter: gh0st
+submission: ""
