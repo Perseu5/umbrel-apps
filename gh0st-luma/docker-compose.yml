@@ -58,7 +58,7 @@ services:
       - curl --fail --silent --show-error --output /dev/null http://127.0.0.1:18080/readyz && socat -T1 - TCP:127.0.0.1:15051
         </dev/null >/dev/null
       timeout: 3s
-    image: ghcr.io/perseu5/luma-cosmos:0.3.29@sha256:548ef49d77bddfff2ba584700fa0d2627c086a73a50e84c35876527905867c14
+    image: ghcr.io/theandersmadsen/luma/cosmos:5f0f50c87ee62f4ef588f9b4678488eb245863ed@sha256:4a54b9f7c3e575d5b15f80d96589663ea70d5a336749128396f51ef71fde1b4c
     init: true
     labels:
       dk.andersmadsen.luma.component: cosmos
@@ -112,7 +112,7 @@ services:
     environment:
     - COSMOS_ADMIN_TOKEN=${COSMOS_ADMIN_TOKEN:-}
     - COSMOS_AUTH_MODE=edge-authenticated
-    - COSMOS_CAPTURE_MAX_UPLOAD_BYTES=${COSMOS_CAPTURE_MAX_UPLOAD_BYTES:-33554432}
+    - COSMOS_CAPTURE_MAX_UPLOAD_BYTES=${COSMOS_CAPTURE_MAX_UPLOAD_BYTES:-}
     - COSMOS_CAPTURE_RETENTION_DAYS=${COSMOS_CAPTURE_RETENTION_DAYS:-}
     - COSMOS_CAPTURE_SHARE_BASE_URL=${COSMOS_CAPTURE_SHARE_BASE_URL:-}
     - COSMOS_CAPTURE_STORAGE_DIR=/var/lib/cosmos/captures
@@ -168,6 +168,7 @@ services:
     - COSMOS_PPLX_API_KEY=${COSMOS_PPLX_API_KEY:-}
     - COSMOS_PPLX_MODEL=${COSMOS_PPLX_MODEL:-sonar}
     - COSMOS_SEARXNG_BASE_URL=${COSMOS_SEARXNG_BASE_URL:-}
+    - COSMOS_SEARXNG_LANGUAGE=${COSMOS_SEARXNG_LANGUAGE:-}
     - COSMOS_SERPAPI_KEY=${COSMOS_SERPAPI_KEY:-}
     - COSMOS_WOLFRAM_APP_ID=${COSMOS_WOLFRAM_APP_ID:-}
     - COSMOS_ATTEST_CA_CERT=/etc/cosmos-attest/ca.crt
@@ -184,7 +185,7 @@ services:
       - curl --fail --silent --show-error --output /dev/null http://127.0.0.1:18080/readyz && socat -T1 - TCP:127.0.0.1:15051
         </dev/null >/dev/null
       timeout: 3s
-    image: ghcr.io/perseu5/luma-cosmos:0.3.29@sha256:548ef49d77bddfff2ba584700fa0d2627c086a73a50e84c35876527905867c14
+    image: ghcr.io/theandersmadsen/luma/cosmos:5f0f50c87ee62f4ef588f9b4678488eb245863ed@sha256:4a54b9f7c3e575d5b15f80d96589663ea70d5a336749128396f51ef71fde1b4c
     init: true
     labels:
       dk.andersmadsen.luma.component: cosmos
@@ -274,6 +275,7 @@ services:
     - LUMA_MUSIC_GATEWAY_ORIGIN=${LUMA_MUSIC_GATEWAY_ORIGIN:-}
     - LUMA_PRODUCT=Luma
     - LUMA_PUBLIC_ORIGIN=${LUMA_PUBLIC_ORIGIN:-http://127.0.0.1:4000}
+    - LUMA_RELEASES_REPO=${LUMA_RELEASES_REPO:-}
     - LUMA_RELEASE_ID=${LUMA_RELEASE_ID:-}
     - TIDAL_CLIENT_ID=${TIDAL_CLIENT_ID:-}
     - TIDAL_CLIENT_SECRET=${TIDAL_CLIENT_SECRET:-}
@@ -293,8 +295,8 @@ services:
     - LUMA_PIN_BRIDGE_TOKEN_FILE=/run/secrets/pin_bridge_control_token
     - LUMA_PIN_BRIDGE_URL=http://center-iroh-bridge:18080
     - LUMA_PIN_RELEASE_DIR=/var/lib/luma/pin-releases
-    - LUMA_PIN_RELEASE_EXPECTED_ID=c7dd62678984a838178f61dc8f1fbf0bf6d5baefaf40937d6717d3275fdc38dc
-    - LUMA_PIN_RELEASE_EXPECTED_MANIFEST_SHA256=9d258cffca5a7595f36cfaf7c0193c4a3b5afcb9a61072175ba91189374d9a68
+    - LUMA_PIN_RELEASE_EXPECTED_ID=69df6bd4c5f96351b6e76baeeaa92d19699124c7584fec772a7bde663968cc70
+    - LUMA_PIN_RELEASE_EXPECTED_MANIFEST_SHA256=04c7f56c4f94df339f856b275501e7a05a415bd5fd055e4b2c666b9229d7d7cf
     - LUMA_PIN_SETUP_ORIGIN=${LUMA_PUBLIC_ORIGIN:-}
     - LUMA_SPOTIFY_ADAPTER_TOKEN_FILE=/run/secrets/spotify_adapter_token
     - LUMA_SPOTIFY_ADAPTER_URL=http://spotify-adapter:18081
@@ -310,7 +312,7 @@ services:
       - -e
       - fetch('http://127.0.0.1:4000/api/version').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))
       timeout: 5s
-    image: ghcr.io/perseu5/luma-center:0.3.29@sha256:ba1c0cbbcde34d6e40b4b38b532f2292016d1930294c26ff38aa4cced3d25aa9
+    image: ghcr.io/theandersmadsen/luma/center:5f0f50c87ee62f4ef588f9b4678488eb245863ed@sha256:87ffdd13958ced3f40d0c18009b60817314c70226f245281b7e2c974ed0f870b
     init: true
     labels:
       dk.andersmadsen.luma.component: center
@@ -379,7 +381,7 @@ services:
       - '4'
       - http://127.0.0.1:18080/__health
       timeout: 5s
-    image: ghcr.io/perseu5/luma-center-iroh-bridge:0.3.29@sha256:6c5c6511d9cfd6f8841698b061f3a04f45ebd2d7a31494e43f7eddac9ae22682
+    image: ghcr.io/theandersmadsen/luma/center-iroh-bridge:5f0f50c87ee62f4ef588f9b4678488eb245863ed@sha256:993b14ac9d91999049504ad38d70b263a092f95cbc80261f3e382eff34f0752a
     labels:
       dk.andersmadsen.luma.component: center-iroh-bridge
       dk.andersmadsen.luma.environment: production
@@ -463,7 +465,7 @@ services:
       - curl --fail --silent --show-error --output /dev/null http://127.0.0.1:18080/readyz && socat -T1 - TCP:127.0.0.1:15051
         </dev/null >/dev/null
       timeout: 3s
-    image: ghcr.io/perseu5/luma-cosmos:0.3.29@sha256:548ef49d77bddfff2ba584700fa0d2627c086a73a50e84c35876527905867c14
+    image: ghcr.io/theandersmadsen/luma/cosmos:5f0f50c87ee62f4ef588f9b4678488eb245863ed@sha256:4a54b9f7c3e575d5b15f80d96589663ea70d5a336749128396f51ef71fde1b4c
     init: true
     labels:
       dk.andersmadsen.luma.component: cosmos
@@ -548,7 +550,7 @@ services:
       - curl --fail --silent --show-error --output /dev/null http://127.0.0.1:18080/readyz && socat -T1 - TCP:127.0.0.1:15051
         </dev/null >/dev/null
       timeout: 3s
-    image: ghcr.io/perseu5/luma-cosmos:0.3.29@sha256:548ef49d77bddfff2ba584700fa0d2627c086a73a50e84c35876527905867c14
+    image: ghcr.io/theandersmadsen/luma/cosmos:5f0f50c87ee62f4ef588f9b4678488eb245863ed@sha256:4a54b9f7c3e575d5b15f80d96589663ea70d5a336749128396f51ef71fde1b4c
     init: true
     labels:
       dk.andersmadsen.luma.component: cosmos
@@ -695,7 +697,7 @@ services:
       - curl --fail --silent --show-error --output /dev/null http://127.0.0.1:18080/readyz && socat -T1 - TCP:127.0.0.1:15051
         </dev/null >/dev/null
       timeout: 3s
-    image: ghcr.io/perseu5/luma-cosmos:0.3.29@sha256:548ef49d77bddfff2ba584700fa0d2627c086a73a50e84c35876527905867c14
+    image: ghcr.io/theandersmadsen/luma/cosmos:5f0f50c87ee62f4ef588f9b4678488eb245863ed@sha256:4a54b9f7c3e575d5b15f80d96589663ea70d5a336749128396f51ef71fde1b4c
     init: true
     labels:
       dk.andersmadsen.luma.component: cosmos
@@ -757,7 +759,7 @@ services:
       - 'exec 3<>/dev/tcp/127.0.0.1/9000 && printf ''GET /health/ready HTTP/1.0\r\n\r\n'' >&3 && grep -q ''"status": "UP"''
         <&3'
       timeout: 5s
-    image: ghcr.io/perseu5/luma-keycloak:0.3.29@sha256:82186d656f9dd6873a4ccc098c1ee9a1a4da14fdb02fd3bb67640a39bb77e33a
+    image: ghcr.io/theandersmadsen/luma/keycloak:5f0f50c87ee62f4ef588f9b4678488eb245863ed@sha256:f9973e4d54b34318dd34ee9921cfbd23804fe4dc9413cdcd43a892999549c3eb
     init: true
     labels:
       dk.andersmadsen.luma.component: identity
@@ -841,7 +843,7 @@ services:
       - curl --fail --silent --show-error --output /dev/null http://127.0.0.1:18080/readyz && socat -T1 - TCP:127.0.0.1:15051
         </dev/null >/dev/null
       timeout: 3s
-    image: ghcr.io/perseu5/luma-cosmos:0.3.29@sha256:548ef49d77bddfff2ba584700fa0d2627c086a73a50e84c35876527905867c14
+    image: ghcr.io/theandersmadsen/luma/cosmos:5f0f50c87ee62f4ef588f9b4678488eb245863ed@sha256:4a54b9f7c3e575d5b15f80d96589663ea70d5a336749128396f51ef71fde1b4c
     init: true
     labels:
       dk.andersmadsen.luma.component: cosmos
@@ -964,7 +966,7 @@ services:
       - curl --fail --silent --show-error --output /dev/null http://127.0.0.1:18080/readyz && socat -T1 - TCP:127.0.0.1:15051
         </dev/null >/dev/null
       timeout: 3s
-    image: ghcr.io/perseu5/luma-cosmos:0.3.29@sha256:548ef49d77bddfff2ba584700fa0d2627c086a73a50e84c35876527905867c14
+    image: ghcr.io/theandersmadsen/luma/cosmos:5f0f50c87ee62f4ef588f9b4678488eb245863ed@sha256:4a54b9f7c3e575d5b15f80d96589663ea70d5a336749128396f51ef71fde1b4c
     init: true
     labels:
       dk.andersmadsen.luma.component: cosmos
@@ -1068,7 +1070,7 @@ services:
       - --no-env-file
       - src/healthcheck.mjs
       timeout: 8s
-    image: ghcr.io/perseu5/luma-spotify-adapter:0.3.29@sha256:8683cbd17adce9dc629ce2cea2279c343c44b9fc243330d833474aa763fa7c08
+    image: ghcr.io/theandersmadsen/luma/spotify-adapter:5f0f50c87ee62f4ef588f9b4678488eb245863ed@sha256:51a162557c07e30fe754253d632147096d923bd704d3b9b814f1336e61848a53
     labels:
       dk.andersmadsen.luma.component: spotify-adapter
       dk.andersmadsen.luma.environment: production
@@ -1147,7 +1149,7 @@ services:
     profiles:
     - luma
   luma-init:
-    image: ghcr.io/perseu5/luma-umbrel:0.3.29@sha256:212d34fa13ef1851fcd14bfb431e15f74efd4844937ec85638f68043e0d13671
+    image: ghcr.io/perseu5/luma-umbrel:0.3.53@sha256:b3023c1551473f5590a2931eec7cb614f842931faebc4f0ea1cff55e11772611
     profiles:
     - luma
     restart: 'no'
@@ -1161,7 +1163,7 @@ services:
     - ${APP_DATA_DIR}/data:/data
     network_mode: none
   portal:
-    image: ghcr.io/perseu5/luma-umbrel:0.3.29@sha256:212d34fa13ef1851fcd14bfb431e15f74efd4844937ec85638f68043e0d13671
+    image: ghcr.io/perseu5/luma-umbrel:0.3.53@sha256:b3023c1551473f5590a2931eec7cb614f842931faebc4f0ea1cff55e11772611
     restart: on-failure
     init: true
     user: 0:0

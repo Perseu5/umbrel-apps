@@ -2,7 +2,7 @@ manifestVersion: 1
 id: gh0st-luma
 category: ai
 name: Luma
-version: "0.3.29"
+version: "0.3.53"
 tagline: Your Ai Pin. Yours again.
 description: >-
   Luma recreates the Humane Ai Pin's cloud (Center and Cosmos) on your own
@@ -23,11 +23,21 @@ description: >-
   Humane or HP. You are responsible for the device, server, accounts,
   credentials, and third-party services you connect.
 releaseNotes: >-
-  Luma is now open source; installs and nightly updates need no GitHub account.
-  Captures are now kept until you delete them (set COSMOS_CAPTURE_RETENTION_DAYS
-  to expire them automatically). Center now uses the Inter typeface. Fixes to
-  location lookups, spoken confirmations, capture search, Pin feature settings,
-  and sign-in tokens. The Pin software is unchanged (2026-09-30.3).
+  Updates Luma from 0.3.29 to 0.3.53. Your setup, accounts and Pin pairing
+  carry over; the first start after updating moves Luma's configuration to
+  the new release automatically.
+
+
+  New: choose Fahrenheit or Celsius for the Pin's weather card (Center >
+  Settings > Advanced > Connection settings, with the Pin connected over USB).
+  Keycloak's account console (where Center sends you to change your
+  password) loads again.
+  Captures can be up to 256 MiB by default, and search results can be pinned
+  to a language with COSMOS_SEARXNG_LANGUAGE.
+
+
+  New Pin apps (2026-11-06.1) are ready: install them from Center > Settings >
+  Advanced > Software & updates.
 developer: Anders Madsen (packaged for Umbrel by gh0st)
 website: https://github.com/TheAndersMadsen/luma
 dependencies: []
